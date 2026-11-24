@@ -1,0 +1,22 @@
+<mxfile host="app.diagrams.net" modified="2026-11-23T22:15:00.000Z" agent="Antigravity" version="21.0.0" type="device">
+  <diagram id="sq_crt" name="Tuần Tự Giỏ Hàng">
+    <mxGraphModel dx="1200" dy="750" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="ll_c_b" value="&lt;b&gt;Khách Hàng&lt;/b&gt;&lt;br&gt;(Browser)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;fillColor=#FFF8F0;strokeColor=#8B5A2B;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="80" y="40" width="120" height="400" as="geometry" /></mxCell>
+        <mxCell id="ll_c_v" value="&lt;b&gt;CartAddView&lt;/b&gt;&lt;br&gt;(views.py)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;fillColor=#FEF3C7;strokeColor=#D97706;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="340" y="40" width="130" height="400" as="geometry" /></mxCell>
+        <mxCell id="ll_c_db" value="&lt;b&gt;Product Model&lt;/b&gt;&lt;br&gt;(Database)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="580" y="40" width="130" height="400" as="geometry" /></mxCell>
+        <mxCell id="ll_c_s" value="&lt;b&gt;Django Session&lt;/b&gt;&lt;br&gt;(request.session)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;fillColor=#E0F2FE;strokeColor=#0284C7;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="800" y="40" width="140" height="400" as="geometry" /></mxCell>
+        <mxCell id="sm1" value="1. POST /cart/add/&lt;id&gt;/ (size='80cm', quantity=1)" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#8B5A2B;strokeWidth=1.5;" edge="1" parent="1"><mxGeometry x="140" y="100" as="geometry"><mxPoint x="140" y="100" as="sourcePoint"/><mxPoint x="405" y="100" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="sm2" value="2. Product.objects.get(pk=product_id)" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#D97706;strokeWidth=1.5;" edge="1" parent="1"><mxGeometry x="405" y="150" as="geometry"><mxPoint x="405" y="150" as="sourcePoint"/><mxPoint x="645" y="150" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="sm3" value="3. Trả về thông tin bé gấu (giá, ảnh, tên)" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;strokeColor=#059669;strokeWidth=1.5;" edge="1" parent="1"><mxGeometry x="645" y="190" as="geometry"><mxPoint x="645" y="190" as="sourcePoint"/><mxPoint x="405" y="190" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="sm4" value="4. Lưu cart_key='&lt;id&gt;_&lt;size&gt;' vào session['cart']" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#0284C7;strokeWidth=1.5;" edge="1" parent="1"><mxGeometry x="405" y="240" as="geometry"><mxPoint x="405" y="240" as="sourcePoint"/><mxPoint x="870" y="240" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="sm5" value="5. Session updated &amp; request.session.modified = True" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;strokeColor=#059669;strokeWidth=1.5;" edge="1" parent="1"><mxGeometry x="870" y="280" as="geometry"><mxPoint x="870" y="280" as="sourcePoint"/><mxPoint x="405" y="280" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="sm6" value="6. Redirect /cart/ (Xem giỏ hàng xinh xắn)" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#8B5A2B;strokeWidth=1.5;" edge="1" parent="1"><mxGeometry x="405" y="330" as="geometry"><mxPoint x="405" y="330" as="sourcePoint"/><mxPoint x="140" y="330" as="targetPoint"/></mxGeometry></mxCell>
+    
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

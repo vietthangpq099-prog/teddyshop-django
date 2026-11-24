@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# Binaries & Tunnels
+cloudflared.exe
+*.exe
+
+# System & OS
+.DS_Store
+Thumbs.db
+
+# Big Word Documents (backup on local)
+*.docx
+*.pdf

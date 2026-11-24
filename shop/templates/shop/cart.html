@@ -1,0 +1,121 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Giỏ Hàng Của Bạn{% endblock %}
+
+{% block content %}
+<div class="page-top py-3 mb-4" style="background:#FFF0F4;border-bottom:1px solid #FFD1DC;">
+    <div class="container">
+        <h2 style="font-weight:900;color:var(--jp-brown);margin:0;">🛍️ Giỏ Hàng Của Bạn</h2>
+    </div>
+</div>
+
+<div class="container pb-5">
+    {% if not cart_items %}
+        <div class="empty-state py-5 text-center bg-white rounded border p-5">
+            <div style="font-size:3.5rem;margin-bottom:12px;">🧺</div>
+            <h4 style="font-weight:900;color:var(--jp-brown);">Giỏ hàng đang trống</h4>
+            <p style="color:var(--jp-brown-sub);">Hãy rinh ngay một chú gấu bông xinh xắn về ôm ngủ nhé!</p>
+            <a href="{% url 'product_list' %}" class="btn btn-danger fw-bold px-4 py-2 mt-2" 
+               style="background:var(--jp-primary-pink);border:none;border-radius:25px;">
+                <i class="fas fa-shopping-bag me-1"></i>Xem Sản Phẩm Ngay
+            </a>
+        </div>
+    {% else %}
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="cart-table bg-white rounded border p-3 shadow-sm">
+                    <table class="table mb-0 align-middle">
+                        <thead class="border-bottom">
+                            <tr style="font-size:13px;color:var(--jp-brown-sub);">
+                                <th>Sản Phẩm</th>
+                                <th>Kích Thước</th>
+                                <th>Đơn Giá</th>
+                                <th>Số Lượng</th>
+                                <th>Thành Tiền</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in cart_items %}
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center gap-3">
+                                            <img src="{{ item.image }}" alt="{{ item.name }}" 
+                                                 style="width:70px;height:70px;object-fit:cover;border-radius:12px;border:1px solid #FFE4EC;" />
+                                            <div>
+                                                <div style="font-weight:800;color:var(--jp-brown);">{{ item.name }}</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge px-3 py-2" style="background:#FFE4EC;color:#D8436B;border-radius:15px;font-size:11px;">
+                                            {{ item.size }}
+                                        </span>
+                                    </td>
+                                    <td style="font-weight:800;color:var(--jp-brown);">
+                                        {{ item.price|floatformat:0 }}₫
+                                    </td>
+                                    <td style="font-weight:800;text-align:center;">
+                                        {{ item.quantity }}
+                                    </td>
+                                    <td style="font-weight:900;color:#D81B60;font-size:1.05rem;">
+                                        {{ item.subtotal|floatformat:0 }}₫
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'cart_remove' key=item.key %}" class="btn btn-sm btn-link text-danger p-0" title="Xóa khỏi giỏ hàng">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-3">
+                    <a href="{% url 'product_list' %}" style="color:var(--jp-primary-pink);font-weight:800;text-decoration:none;">
+                        <i class="fas fa-arrow-left me-1"></i>Tiếp tục mua sắm thêm gấu bông
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="cart-summary bg-white rounded border p-4 shadow-sm" style="position:sticky;top:90px;">
+                    <h5 style="font-weight:900;color:var(--jp-brown);border-bottom:2px dashed #FFCCD8;padding-bottom:12px;margin-bottom:20px;">
+                        Tóm Tắt Đơn Hàng
+                    </h5>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span style="color:var(--jp-brown-sub);">Tổng tiền hàng:</span>
+                        <strong style="color:var(--jp-brown);">{{ total|floatformat:0 }}₫</strong>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3 pb-3 border-bottom">
+                        <span style="color:var(--jp-brown-sub);">Phí vận chuyển:</span>
+                        <strong class="text-success">
+                            {% if total >= 500000 %}
+                                Miễn phí
+                            {% else %}
+                                30.000₫
+                            {% endif %}
+                        </strong>
+                    </div>
+                    <div class="d-flex justify-content-between mb-4">
+                        <span style="font-weight:900;font-size:16px;">Tổng thanh toán:</span>
+                        <strong style="font-weight:900;color:#D81B60;font-size:22px;">
+                            {% if total >= 500000 %}
+                                {{ total|floatformat:0 }}₫
+                            {% else %}
+                                {% widthratio total 1 1 as t %}{{ total|add:30000|floatformat:0 }}₫
+                            {% endif %}
+                        </strong>
+                    </div>
+
+                    <a href="{% url 'checkout' %}" class="btn btn-danger w-100 py-3 fw-bold shadow-sm" 
+                       style="background:var(--jp-primary-pink);border:none;border-radius:25px;font-size:15px;">
+                        Tiến Hành Thanh Toán ➔
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,247 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Trang Chủ - Cửa Hàng Gấu Bông TeddyShop (Django){% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- BỐ CỤC 2 CỘT -->
+    <div class="jp-layout">
+
+        <!-- ================= CỘT TRÁI (SIDEBAR) ================= -->
+        <aside class="jp-sidebar">
+            <!-- 1. Tìm Theo Nhân Vật -->
+            <div class="jp-side-box">
+                <div class="jp-side-head">
+                    <i class="fas fa-paw"></i> Tìm Theo Nhân Vật
+                </div>
+                <div class="jp-side-body">
+                    <a href="{% url 'product_list' %}?search=Teddy" class="jp-char-item">
+                        <div class="jp-char-icon">🧸</div>
+                        <div>
+                            <div>Gấu Teddy Cổ Điển</div>
+                            <small class="text-muted" style="font-size:10px;">Lông xoắn mềm mại</small>
+                        </div>
+                    </a>
+                    <a href="{% url 'product_list' %}?search=Trúc" class="jp-char-item">
+                        <div class="jp-char-icon">🐼</div>
+                        <div>
+                            <div>Gấu Trúc Đáng Yêu</div>
+                            <small class="text-muted" style="font-size:10px;">Tròn trĩnh dễ thương</small>
+                        </div>
+                    </a>
+                    <a href="{% url 'product_list' %}?search=Thỏ" class="jp-char-item">
+                        <div class="jp-char-icon">🐰</div>
+                        <div>
+                            <div>Thỏ Bông Tai Dài</div>
+                            <small class="text-muted" style="font-size:10px;">Nhung mịn màng</small>
+                        </div>
+                    </a>
+                    <a href="{% url 'product_list' %}?search=Mèo" class="jp-char-item">
+                        <div class="jp-char-icon">🐱</div>
+                        <div>
+                            <div>Mèo Con Shorthair</div>
+                            <small class="text-muted" style="font-size:10px;">Mắt tròn ngộ nghĩnh</small>
+                        </div>
+                    </a>
+                    <a href="{% url 'product_list' %}?category=3" class="jp-char-item">
+                        <div class="jp-char-icon">🐻</div>
+                        <div>
+                            <div>Gấu Khổng Lồ 1m5+</div>
+                            <small class="text-muted" style="font-size:10px;">Cỡ đại ôm cực đã</small>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2. Tìm Theo Danh Mục -->
+            <div class="jp-side-box">
+                <div class="jp-side-head">
+                    <i class="fas fa-th-list"></i> Danh Mục Sản Phẩm
+                </div>
+                <div class="jp-side-body p-0">
+                    <ul class="jp-cat-list">
+                        <li>
+                            <a href="{% url 'product_list' %}" class="jp-cat-link">
+                                <span>Tất cả sản phẩm</span>
+                                <span class="jp-cat-count">★</span>
+                            </a>
+                        </li>
+                        {% for cat in categories %}
+                            <li>
+                                <a href="{% url 'product_list' %}?category={{ cat.categoryid }}" class="jp-cat-link">
+                                    <span>{{ cat.categoryname }}</span>
+                                    <span class="jp-cat-count">★</span>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3. Lọc Theo Mức Giá -->
+            <div class="jp-side-box">
+                <div class="jp-side-head">
+                    <i class="fas fa-coins"></i> Lọc Theo Mức Giá
+                </div>
+                <div class="jp-side-body p-0">
+                    <ul class="jp-cat-list">
+                        <li><a href="{% url 'product_list' %}?sort=price_asc" class="jp-cat-link">Dưới 200.000₫</a></li>
+                        <li><a href="{% url 'product_list' %}?sort=price_asc" class="jp-cat-link">Từ 200.000₫ - 500.000₫</a></li>
+                        <li><a href="{% url 'product_list' %}?sort=price_desc" class="jp-cat-link">Trên 500.000₫ (Gấu to & Quà)</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 4. Cam Kết Chất Lượng -->
+            <div class="jp-side-banner">
+                <div style="font-size:2rem;margin-bottom:6px;">☁️🎀</div>
+                <h6>100% Bông Êm Mềm Tinh Khiết</h6>
+                <p>Kháng khuẩn không bám bụi, lông tơ mịn màng vuốt êm tay, miễn phí đóng hộp quà và thiệp chúc mừng.</p>
+            </div>
+        </aside>
+
+        <!-- ================= CỘT PHẢI (NỘI DUNG CHÍNH) ================= -->
+        <div class="jp-main-content">
+
+            <!-- Dải tin tức mới nhất -->
+            <div class="jp-news-box">
+                <span class="jp-news-label">Django 6.1</span>
+                <div class="jp-news-content">
+                    <span class="jp-news-date">2026</span>
+                    <strong>[Mới Nhất]</strong> Website bán gấu bông phiên bản Django đã chính thức hoạt động, kết nối trực tiếp với SQL Server!
+                </div>
+            </div>
+
+            <!-- Banner Chiến Dịch Nổi Bật -->
+            <div class="jp-hero-campaign">
+                <div class="row align-items-center">
+                    <div class="col-md-7">
+                        <span class="jp-campaign-badge">BỘ SƯU TẬP NỔI BẬT</span>
+                        <div class="jp-campaign-title">
+                            Gấu Bông Cao Cấp<br />
+                            <span>Mùa Xuân Ấm Áp</span> 🧸
+                        </div>
+                        <p class="jp-campaign-desc">
+                            Chất lông nhung siêu mềm mịn, ruột bông gòn tinh khiết không xẹp, thích hợp làm món quà ấm áp và ý nghĩa cho người bạn yêu thương.
+                        </p>
+                        <a href="{% url 'product_list' %}" class="btn btn-danger" 
+                           style="background:var(--jp-primary-pink);border:none;border-radius:25px;padding:9px 24px;font-weight:800;font-size:13px;">
+                            Khám Phá Ngay ➔
+                        </a>
+                    </div>
+                    <div class="col-md-5 text-center d-none d-md-block">
+                        <img src="{% static 'images/gau-1.jpg' %}" alt="Gấu Teddy nổi bật"
+                             style="width:200px;height:200px;object-fit:cover;border-radius:50%;border:5px solid white;box-shadow:0 8px 24px rgba(232,90,113,0.25);" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= PHẦN 1: BẢNG XẾP HẠNG BÁN CHẠY NHẤT ================= -->
+            <div class="jp-title-bar">
+                <div class="jp-title-left">
+                    <h3 class="jp-title-main">
+                        <i class="fas fa-crown text-warning"></i> Bảng Xếp Hạng Bán Chạy Nhất
+                    </h3>
+                    <span class="jp-title-sub">BÁN CHẠY TRONG TUẦN</span>
+                </div>
+                <a href="{% url 'product_list' %}" class="jp-title-link">Xem tất cả ➔</a>
+            </div>
+
+            <div class="jp-grid-4">
+                {% for p in featured_products|slice:":4" %}
+                    <a href="{% url 'product_detail' pk=p.productid %}" class="jp-card">
+                        <div class="jp-card-thumb">
+                            <div class="jp-tag-rank {% if forloop.counter == 1 %}rank-gold{% elif forloop.counter == 2 %}rank-silver{% elif forloop.counter == 3 %}rank-bronze{% endif %}">
+                                Top {{ forloop.counter }}
+                            </div>
+                            <img src="{{ p.get_image_url }}" alt="{{ p.productname }}" />
+                            <div class="jp-tag-stack" style="left:auto;right:8px;">
+                                <span class="jp-tag jp-tag-new">Hot</span>
+                            </div>
+                        </div>
+                        <div class="jp-card-info">
+                            <span class="jp-card-cat">{{ p.category.categoryname }}</span>
+                            <div class="jp-card-title">{{ p.productname }}</div>
+                            <div class="jp-card-price-area">
+                                <span class="jp-card-price">{{ p.baseprice|floatformat:0 }}₫</span>
+                                <span class="jp-card-tax">(Đã gồm VAT)</span>
+                            </div>
+                            <div class="jp-card-stock">
+                                <i class="fas fa-check-circle" style="font-size:10px;"></i> Còn hàng trong kho
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+
+            <!-- ================= PHẦN 2: CHỦ ĐỀ GỢI Ý ================= -->
+            <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                    <a href="{% url 'product_list' %}?category=3" class="d-block p-3 text-decoration-none" 
+                       style="background:#FFF8E1;border:2px dashed #FFE082;border-radius:10px;color:var(--jp-brown);transition:transform 0.2s;">
+                        <div class="d-flex align-items-center gap-3">
+                            <div style="font-size:2.4rem;">🐻</div>
+                            <div>
+                                <span class="badge bg-warning text-dark mb-1" style="font-size:10px;">BỘ SƯU TẬP CỠ LỚN</span>
+                                <div style="font-weight:900;font-size:15px;">Gấu Bông Khổng Lồ 1m5 Ôm Siêu Đã</div>
+                                <small style="color:var(--jp-brown-sub);">Người bạn ôm ngủ ấm áp không thể thiếu cho phòng ngủ ➔</small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a href="{% url 'product_list' %}?category=4" class="d-block p-3 text-decoration-none" 
+                       style="background:#FFF0F2;border:2px dashed #FFCCD4;border-radius:10px;color:var(--jp-brown);transition:transform 0.2s;">
+                        <div class="d-flex align-items-center gap-3">
+                            <div style="font-size:2.4rem;">🎁</div>
+                            <div>
+                                <span class="badge bg-danger text-white mb-1" style="font-size:10px;">QUÀ TẶNG & THIỆP TAY</span>
+                                <div style="font-weight:900;font-size:15px;">Combo Hộp Quà Sang & Thiệp Chúc Mừng</div>
+                                <small style="color:var(--jp-brown-sub);">Gói sẵn ruy băng lụa xinh xắn, chỉ việc đem tặng ➔</small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- ================= PHẦN 3: SẢN PHẨM MỚI VỀ ================= -->
+            <div class="jp-title-bar">
+                <div class="jp-title-left">
+                    <h3 class="jp-title-main">
+                        <i class="fas fa-sparkles text-danger"></i> Sản Phẩm Mới Về
+                    </h3>
+                    <span class="jp-title-sub">MẪU MỚI NHẤT</span>
+                </div>
+                <a href="{% url 'product_list' %}" class="jp-title-link">Xem tất cả ➔</a>
+            </div>
+
+            <div class="jp-grid-4">
+                {% for p in featured_products|slice:"4:8" %}
+                    <a href="{% url 'product_detail' pk=p.productid %}" class="jp-card">
+                        <div class="jp-card-thumb">
+                            <div class="jp-tag-stack">
+                                <span class="jp-tag jp-tag-new">Mới</span>
+                            </div>
+                            <img src="{{ p.get_image_url }}" alt="{{ p.productname }}" />
+                        </div>
+                        <div class="jp-card-info">
+                            <span class="jp-card-cat">{{ p.category.categoryname }}</span>
+                            <div class="jp-card-title">{{ p.productname }}</div>
+                            <div class="jp-card-price-area">
+                                <span class="jp-card-price">{{ p.baseprice|floatformat:0 }}₫</span>
+                                <span class="jp-card-tax">(Đã gồm VAT)</span>
+                            </div>
+                            <div class="jp-card-stock">
+                                <i class="fas fa-check-circle" style="font-size:10px;"></i> Còn hàng trong kho
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+
+        </div> <!-- /jp-main-content -->
+
+    </div> <!-- /jp-layout -->
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+<mxfile host="app.diagrams.net" modified="2026-11-23T22:15:00.000Z" agent="Antigravity" version="21.0.0" type="device">
+  <diagram id="sq_adm" name="Tuần Tự Admin Duyệt Đơn">
+    <mxGraphModel dx="1200" dy="750" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="ll_a_b" value="&lt;b&gt;Quản Trị Viên&lt;/b&gt;&lt;br&gt;(Admin Browser)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;fillColor=#FEF2F2;strokeColor=#DC2626;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="80" y="40" width="130" height="380" as="geometry" /></mxCell>
+        <mxCell id="ll_a_dec" value="&lt;b&gt;@admin_required&lt;/b&gt;&lt;br&gt;(Decorator)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;fillColor=#FEF3C7;strokeColor=#D97706;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="340" y="40" width="140" height="380" as="geometry" /></mxCell>
+        <mxCell id="ll_a_v" value="&lt;b&gt;AdminOrderView&lt;/b&gt;&lt;br&gt;(views.py)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;fillColor=#E0F2FE;strokeColor=#0284C7;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="590" y="40" width="140" height="380" as="geometry" /></mxCell>
+        <mxCell id="ll_a_db" value="&lt;b&gt;SQL Server DB&lt;/b&gt;&lt;br&gt;(dbo.Orders)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="810" y="40" width="140" height="380" as="geometry" /></mxCell>
+        <mxCell id="am1" value="1. POST /shop-admin/orders/&lt;id&gt;/status/ (new_status='Đang giao')" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#DC2626;strokeWidth=1.5;" edge="1" parent="1"><mxGeometry x="145" y="100" as="geometry"><mxPoint x="145" y="100" as="sourcePoint"/><mxPoint x="410" y="100" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="am2" value="2. Kiểm tra session.get('user_role') == 'Admin'" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#D97706;strokeWidth=1.5;" edge="1" parent="1"><mxGeometry x="410" y="140" as="geometry"><mxPoint x="410" y="140" as="sourcePoint"/><mxPoint x="660" y="140" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="am3" value="3. Xác thực hợp lệ -&gt; Cho phép thực thi View" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;strokeColor=#059669;strokeWidth=1.5;" edge="1" parent="1"><mxGeometry x="660" y="180" as="geometry"><mxPoint x="660" y="180" as="sourcePoint"/><mxPoint x="410" y="180" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="am4" value="4. order = Order.objects.get(pk=order_id); order.status=new_status; order.save()" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#16A34A;strokeWidth=1.5;" edge="1" parent="1"><mxGeometry x="660" y="230" as="geometry"><mxPoint x="660" y="230" as="sourcePoint"/><mxPoint x="880" y="230" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="am5" value="5. Cập nhật trạng thái thành công trong SQL Server" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;strokeColor=#059669;strokeWidth=1.5;" edge="1" parent="1"><mxGeometry x="880" y="270" as="geometry"><mxPoint x="880" y="270" as="sourcePoint"/><mxPoint x="660" y="270" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="am6" value="6. Redirect /shop-admin/orders/ &amp; Thông báo duyệt thành công" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#DC2626;strokeWidth=1.5;" edge="1" parent="1"><mxGeometry x="660" y="320" as="geometry"><mxPoint x="660" y="320" as="sourcePoint"/><mxPoint x="145" y="320" as="targetPoint"/></mxGeometry></mxCell>
+    
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

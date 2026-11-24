@@ -1,0 +1,78 @@
+<mxfile host="app.diagrams.net" modified="2026-11-23T22:15:00.000Z" agent="Antigravity" version="21.0.0" type="device">
+  <diagram id="uc_all" name="Use Case Tổng Thể">
+    <mxGraphModel dx="1200" dy="750" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- System Boundary -->
+        <mxCell id="sys_box" value="&lt;b&gt;HỆ THỐNG WEBSITE TEDDYSHOP&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#0284C7;strokeWidth=2;align=center;verticalAlign=top;spacingTop=12;fontColor=#0369A1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="220" y="50" width="600" height="580" as="geometry" />
+        </mxCell>
+
+        <!-- Customer Actor -->
+        <mxCell id="act_customer" value="&lt;b&gt;Khách Hàng&lt;/b&gt;&lt;br&gt;(Customer)" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#E0F2FE;strokeColor=#0284C7;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="70" y="270" width="60" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- Admin Actor -->
+        <mxCell id="act_admin" value="&lt;b&gt;Quản Trị Viên&lt;/b&gt;&lt;br&gt;(Admin)" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FEE2E2;strokeColor=#DC2626;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="890" y="270" width="60" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- Use Cases Customer -->
+        <mxCell id="uc_auth" value="Đăng ký &amp; Đăng nhập" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#38BDF8;strokeWidth=2;fontStyle=1;fontSize=13;fontColor=#0F172A;" vertex="1" parent="1">
+          <mxGeometry x="260" y="90" width="220" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_browse" value="Xem &amp; Tìm kiếm gấu bông" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#38BDF8;strokeWidth=2;fontStyle=1;fontSize=13;fontColor=#0F172A;" vertex="1" parent="1">
+          <mxGeometry x="260" y="165" width="220" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_size" value="Chọn kích cỡ (40cm/80cm/120cm)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#38BDF8;strokeWidth=2;fontStyle=1;fontSize=13;fontColor=#0F172A;" vertex="1" parent="1">
+          <mxGeometry x="260" y="240" width="230" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_cart" value="Quản lý giỏ hàng Session" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#38BDF8;strokeWidth=2;fontStyle=1;fontSize=13;fontColor=#0F172A;" vertex="1" parent="1">
+          <mxGeometry x="260" y="315" width="220" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_order" value="Đặt hàng, Gói quà &amp; Viết thiệp" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#38BDF8;strokeWidth=2;fontStyle=1;fontSize=13;fontColor=#0F172A;" vertex="1" parent="1">
+          <mxGeometry x="260" y="390" width="230" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_track" value="Theo dõi trạng thái đơn hàng" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#38BDF8;strokeWidth=2;fontStyle=1;fontSize=13;fontColor=#0F172A;" vertex="1" parent="1">
+          <mxGeometry x="260" y="465" width="220" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- Use Cases Admin -->
+        <mxCell id="uc_admin_login" value="Đăng nhập quản trị (/login/)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#F87171;strokeWidth=2;fontStyle=1;fontSize=13;fontColor=#0F172A;" vertex="1" parent="1">
+          <mxGeometry x="540" y="120" width="240" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_manage_cat" value="Quản lý danh mục gấu bông" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#F87171;strokeWidth=2;fontStyle=1;fontSize=13;fontColor=#0F172A;" vertex="1" parent="1">
+          <mxGeometry x="540" y="200" width="240" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_manage_prod" value="Quản lý gấu bông (Thêm/Sửa/Xóa)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#F87171;strokeWidth=2;fontStyle=1;fontSize=13;fontColor=#0F172A;" vertex="1" parent="1">
+          <mxGeometry x="540" y="280" width="250" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_manage_order" value="Duyệt đơn hàng &amp; Cập nhật trạng thái" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#F87171;strokeWidth=2;fontStyle=1;fontSize=13;fontColor=#0F172A;" vertex="1" parent="1">
+          <mxGeometry x="540" y="360" width="260" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_dashboard" value="Dashboard xem thống kê doanh thu" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#F87171;strokeWidth=2;fontStyle=1;fontSize=13;fontColor=#0F172A;" vertex="1" parent="1">
+          <mxGeometry x="540" y="440" width="250" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- Links Customer -->
+        <mxCell id="e_c1" style="endArrow=none;html=1;strokeColor=#94A3B8;strokeWidth=1.5;" edge="1" parent="1" source="act_customer" target="uc_auth"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e_c2" style="endArrow=none;html=1;strokeColor=#94A3B8;strokeWidth=1.5;" edge="1" parent="1" source="act_customer" target="uc_browse"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e_c3" style="endArrow=none;html=1;strokeColor=#94A3B8;strokeWidth=1.5;" edge="1" parent="1" source="act_customer" target="uc_size"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e_c4" style="endArrow=none;html=1;strokeColor=#94A3B8;strokeWidth=1.5;" edge="1" parent="1" source="act_customer" target="uc_cart"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e_c5" style="endArrow=none;html=1;strokeColor=#94A3B8;strokeWidth=1.5;" edge="1" parent="1" source="act_customer" target="uc_order"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e_c6" style="endArrow=none;html=1;strokeColor=#94A3B8;strokeWidth=1.5;" edge="1" parent="1" source="act_customer" target="uc_track"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- Links Admin -->
+        <mxCell id="e_a1" style="endArrow=none;html=1;strokeColor=#94A3B8;strokeWidth=1.5;" edge="1" parent="1" source="act_admin" target="uc_admin_login"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e_a2" style="endArrow=none;html=1;strokeColor=#94A3B8;strokeWidth=1.5;" edge="1" parent="1" source="act_admin" target="uc_manage_cat"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e_a3" style="endArrow=none;html=1;strokeColor=#94A3B8;strokeWidth=1.5;" edge="1" parent="1" source="act_admin" target="uc_manage_prod"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e_a4" style="endArrow=none;html=1;strokeColor=#94A3B8;strokeWidth=1.5;" edge="1" parent="1" source="act_admin" target="uc_manage_order"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e_a5" style="endArrow=none;html=1;strokeColor=#94A3B8;strokeWidth=1.5;" edge="1" parent="1" source="act_admin" target="uc_dashboard"><mxGeometry relative="1" as="geometry" /></mxCell>
+    
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

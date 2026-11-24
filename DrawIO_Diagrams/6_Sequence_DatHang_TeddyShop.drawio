@@ -1,0 +1,51 @@
+<mxfile host="app.diagrams.net" modified="2026-11-23T22:15:00.000Z" agent="Antigravity" version="21.0.0" type="device">
+  <diagram id="sq_ord" name="Tuần Tự Đặt Hàng">
+    <mxGraphModel dx="1200" dy="750" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Lifelines -->
+        <mxCell id="ll_browser" value="&lt;b&gt;Khách Hàng&lt;/b&gt;&lt;br&gt;(Web Browser)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;fillColor=#E0F2FE;strokeColor=#0284C7;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="40" width="130" height="460" as="geometry" />
+        </mxCell>
+        <mxCell id="ll_view" value="&lt;b&gt;CheckoutView&lt;/b&gt;&lt;br&gt;(views.py)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;fillColor=#FEF3C7;strokeColor=#D97706;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="40" width="130" height="460" as="geometry" />
+        </mxCell>
+        <mxCell id="ll_session" value="&lt;b&gt;Session Engine&lt;/b&gt;&lt;br&gt;(request.session)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;fillColor=#FFF8F0;strokeColor=#8B5A2B;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="570" y="40" width="140" height="460" as="geometry" />
+        </mxCell>
+        <mxCell id="ll_db" value="&lt;b&gt;SQL Server DB&lt;/b&gt;&lt;br&gt;(Orders &amp; Details)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;fillColor=#DCFCE7;strokeColor=#16A34A;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="820" y="40" width="140" height="460" as="geometry" />
+        </mxCell>
+
+        <!-- Messages -->
+        <mxCell id="m1" value="1. POST /cart/checkout/ (Họ tên, SĐT, Địa chỉ, Thiệp chúc)" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#0284C7;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry x="135" y="110" as="geometry"><mxPoint x="135" y="110" as="sourcePoint"/><mxPoint x="385" y="110" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="m2" value="2. Lấy giỏ hàng session.get('cart')" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#D97706;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry x="385" y="150" as="geometry"><mxPoint x="385" y="150" as="sourcePoint"/><mxPoint x="640" y="150" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="m3" value="3. Trả về dict các món gấu bông &amp; tổng tiền" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;strokeColor=#059669;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry x="640" y="190" as="geometry"><mxPoint x="640" y="190" as="sourcePoint"/><mxPoint x="385" y="190" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="m4" value="4. Order.objects.create(OrderCode, GiftMessage, Status='Chờ xác nhận')" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#16A34A;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry x="385" y="240" as="geometry"><mxPoint x="385" y="240" as="sourcePoint"/><mxPoint x="890" y="240" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="m5" value="5. OrderDetail.objects.create(từng bé gấu, size, đơn giá)" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#16A34A;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry x="385" y="290" as="geometry"><mxPoint x="385" y="290" as="sourcePoint"/><mxPoint x="890" y="290" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="m6" value="6. Lưu CSDL thành công" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;strokeColor=#059669;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry x="890" y="330" as="geometry"><mxPoint x="890" y="330" as="sourcePoint"/><mxPoint x="385" y="330" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="m7" value="7. del request.session['cart'] (Làm sạch giỏ hàng)" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#D97706;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry x="385" y="380" as="geometry"><mxPoint x="385" y="380" as="sourcePoint"/><mxPoint x="640" y="380" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="m8" value="8. Redirect /order-success/&lt;code&gt;/ (Hiện mã đơn &amp; thiệp)" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#0284C7;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry x="385" y="430" as="geometry"><mxPoint x="385" y="430" as="sourcePoint"/><mxPoint x="135" y="430" as="targetPoint"/></mxGeometry>
+        </mxCell>
+    
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

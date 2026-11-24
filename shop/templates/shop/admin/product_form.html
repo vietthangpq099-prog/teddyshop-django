@@ -1,0 +1,95 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}{{ action }} Sản Phẩm - Admin{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 style="font-weight:900;color:var(--jp-brown);margin:0;">
+                    <i class="fas fa-edit me-2 text-danger"></i>{{ action }} Sản Phẩm Gấu Bông
+                </h3>
+                <a href="{% url 'admin_products' %}" class="btn btn-outline-secondary btn-sm fw-bold px-3" style="border-radius:20px;">
+                    <i class="fas fa-arrow-left me-1"></i>Danh Sách Sản Phẩm
+                </a>
+            </div>
+
+            <div class="bg-white rounded border p-4 shadow-sm" style="border-radius:20px !important;">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold small text-muted">Tên sản phẩm *</label>
+                        <input type="text" name="productname" class="form-control" value="{{ product.productname|default:'' }}" required placeholder="VD: Gấu Teddy Nâu..." style="border-radius:10px;" />
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small text-muted">Danh mục *</label>
+                            <select name="category" class="form-select" required style="border-radius:10px;">
+                                {% for cat in categories %}
+                                    <option value="{{ cat.categoryid }}" {% if product and product.category.categoryid == cat.categoryid %}selected{% endif %}>
+                                        {{ cat.categoryname }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small text-muted">Giá bán (VNĐ) *</label>
+                            <input type="number" name="baseprice" class="form-control" value="{{ product.baseprice|default:180000|floatformat:0 }}" required style="border-radius:10px;" />
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold small text-muted">Tải ảnh sản phẩm mới</label>
+                        <input type="file" name="image" class="form-control" accept="image/*" style="border-radius:10px;" />
+                        {% if product and product.imageurl %}
+                            <div class="mt-2 d-flex align-items-center gap-2">
+                                <small class="text-muted">Ảnh hiện tại:</small>
+                                <img src="{{ product.get_image_url }}" alt="{{ product.productname }}" style="width:60px;height:60px;object-fit:cover;border-radius:8px;border:1px solid #FFE4EC;" />
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small text-muted">Kích cỡ có sẵn (cách nhau dấu phẩy)</label>
+                            <input type="text" name="sizeoptions" class="form-control" value="{{ product.sizeoptions|default:'40cm, 80cm, 120cm' }}" placeholder="40cm, 80cm, 120cm" style="border-radius:10px;" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small text-muted">Số lượng trong kho</label>
+                            <input type="number" name="stock" class="form-control" value="{{ product.stock|default:50 }}" style="border-radius:10px;" />
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold small text-muted">Chất liệu sản phẩm</label>
+                        <input type="text" name="material" class="form-control" value="{{ product.material|default:'' }}" placeholder="Lông nhung polyester cao cấp, nhân bông PP cotton siêu mềm" style="border-radius:10px;" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold small text-muted">Mô tả sản phẩm</label>
+                        <textarea name="description" class="form-control" rows="4" placeholder="Mô tả chi tiết về chú gấu bông..." style="border-radius:10px;">{{ product.description|default:'' }}</textarea>
+                    </div>
+
+                    {% if product %}
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="checkbox" name="isavailable" id="availCheck" {% if product.isavailable %}checked{% endif %} />
+                            <label class="form-check-label fw-bold" for="availCheck">
+                                Đang mở bán (Hiển thị ngoài trang chủ)
+                            </label>
+                        </div>
+                    {% endif %}
+
+                    <button type="submit" class="btn btn-danger w-100 py-3 fw-bold shadow-sm" 
+                            style="background:var(--jp-primary-pink);border:none;border-radius:20px;font-size:16px;">
+                        <i class="fas fa-save me-2"></i>Lưu Sản Phẩm
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

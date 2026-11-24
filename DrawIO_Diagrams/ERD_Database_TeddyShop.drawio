@@ -1,0 +1,41 @@
+<mxfile host="app.diagrams.net" modified="2026-11-23T22:15:00.000Z" agent="Antigravity" version="21.0.0" type="device">
+  <diagram id="erd" name="ERD Database">
+    <mxGraphModel dx="1200" dy="750" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Table Categories -->
+        <mxCell id="tb_cat" value="&lt;b&gt;dbo.Categories&lt;/b&gt;&lt;hr&gt;&lt;font color='#DC2626'&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/font&gt;  CategoryId: int [Identity]&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;CategoryName: nvarchar(100)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Description: nvarchar(300)" style="swimlane;fontStyle=0;align=left;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;fillColor=#047857;fontColor=#ffffff;strokeColor=#047857;strokeWidth=2;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="50" y="50" width="250" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- Table Products -->
+        <mxCell id="tb_prod" value="&lt;b&gt;dbo.Products&lt;/b&gt;&lt;hr&gt;&lt;font color='#DC2626'&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/font&gt;  ProductId: int [Identity]&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;ProductName: nvarchar(200)&lt;br&gt;&lt;font color='#2563EB'&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/font&gt;  CategoryId: int -&gt; Categories&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;BasePrice: decimal(18,0)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;ImageUrl: nvarchar(500)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Material: nvarchar(300)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;SizeOptions: nvarchar(200)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Stock: int&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;IsAvailable: bit" style="swimlane;fontStyle=0;align=left;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;fillColor=#047857;fontColor=#ffffff;strokeColor=#047857;strokeWidth=2;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="400" y="30" width="270" height="200" as="geometry" />
+        </mxCell>
+
+        <!-- Table Users -->
+        <mxCell id="tb_user" value="&lt;b&gt;dbo.Users&lt;/b&gt;&lt;hr&gt;&lt;font color='#DC2626'&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/font&gt;  UserId: int [Identity]&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Username: nvarchar(50) [UQ]&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Password: nvarchar(100)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;FullName: nvarchar(100)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Email: nvarchar(100)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Phone: nvarchar(20)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Address: nvarchar(300)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Role: nvarchar(20)" style="swimlane;fontStyle=0;align=left;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;fillColor=#047857;fontColor=#ffffff;strokeColor=#047857;strokeWidth=2;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="50" y="270" width="250" height="180" as="geometry" />
+        </mxCell>
+
+        <!-- Table Orders -->
+        <mxCell id="tb_order" value="&lt;b&gt;dbo.Orders&lt;/b&gt;&lt;hr&gt;&lt;font color='#DC2626'&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/font&gt;  OrderId: int [Identity]&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;OrderCode: nvarchar(30)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;CustomerName: nvarchar(200)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Phone: nvarchar(20)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Address: nvarchar(500)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TotalAmount: decimal(18,0)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;IsGiftWrapped: bit&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;GiftMessage: nvarchar(500)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Status: nvarchar(50)" style="swimlane;fontStyle=0;align=left;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;fillColor=#047857;fontColor=#ffffff;strokeColor=#047857;strokeWidth=2;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="400" y="270" width="270" height="200" as="geometry" />
+        </mxCell>
+
+        <!-- Table OrderDetails -->
+        <mxCell id="tb_orderdetail" value="&lt;b&gt;dbo.OrderDetails&lt;/b&gt;&lt;hr&gt;&lt;font color='#DC2626'&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/font&gt;  OrderDetailId: int [Identity]&lt;br&gt;&lt;font color='#2563EB'&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/font&gt;  OrderId: int -&gt; Orders&lt;br&gt;&lt;font color='#2563EB'&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/font&gt;  ProductId: int -&gt; Products&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;ProductName: nvarchar(200)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;SelectedSize: nvarchar(20)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Quantity: int&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;UnitPrice: decimal(18,0)" style="swimlane;fontStyle=0;align=left;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;fillColor=#047857;fontColor=#ffffff;strokeColor=#047857;strokeWidth=2;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="760" y="160" width="250" height="170" as="geometry" />
+        </mxCell>
+
+        <!-- FK Connectors -->
+        <mxCell id="fk_1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#047857;strokeWidth=2;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="tb_cat" target="tb_prod"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="fk_2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#047857;strokeWidth=2;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="tb_prod" target="tb_orderdetail"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="fk_3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#047857;strokeWidth=2;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="tb_order" target="tb_orderdetail"><mxGeometry relative="1" as="geometry" /></mxCell>
+    
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

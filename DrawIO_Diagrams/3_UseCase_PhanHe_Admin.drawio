@@ -1,0 +1,28 @@
+<mxfile host="app.diagrams.net" modified="2026-11-23T22:15:00.000Z" agent="Antigravity" version="21.0.0" type="device">
+  <diagram id="uc_adm" name="Use Case Admin">
+    <mxGraphModel dx="1200" dy="750" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="box_adm" value="&lt;b&gt;PHÂN HỆ QUẢN TRỊ VIÊN (ADMIN)&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#DC2626;strokeWidth=2;align=center;verticalAlign=top;spacingTop=12;fontColor=#991B1B;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="220" y="50" width="560" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="act_ad" value="&lt;b&gt;Quản Trị Viên&lt;/b&gt;&lt;br&gt;(Admin)" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FEE2E2;strokeColor=#DC2626;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="70" y="200" width="60" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_a1" value="UC-07: Đăng nhập quyền Admin (/account/login/)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#DC2626;strokeWidth=2;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="280" y="90" width="340" height="50" as="geometry" /></mxCell>
+        <mxCell id="uc_a2" value="UC-08: Quản lý danh mục gấu bông (Thêm/Sửa/Xóa)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#DC2626;strokeWidth=2;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="280" y="160" width="340" height="50" as="geometry" /></mxCell>
+        <mxCell id="uc_a3" value="UC-09: Quản lý sản phẩm gấu bông (Giá, Size, Kho)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#DC2626;strokeWidth=2;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="280" y="230" width="340" height="50" as="geometry" /></mxCell>
+        <mxCell id="uc_a4" value="UC-10: Quản lý &amp; Duyệt trạng thái đơn hàng" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#DC2626;strokeWidth=2;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="280" y="300" width="340" height="50" as="geometry" /></mxCell>
+        <mxCell id="uc_a5" value="UC-11: Dashboard thống kê doanh thu bán gấu" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#DC2626;strokeWidth=2;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="280" y="370" width="340" height="50" as="geometry" /></mxCell>
+        <mxCell id="ea1" style="endArrow=none;html=1;strokeColor=#DC2626;strokeWidth=1.5;" edge="1" parent="1" source="act_ad" target="uc_a1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ea2" style="endArrow=none;html=1;strokeColor=#DC2626;strokeWidth=1.5;" edge="1" parent="1" source="act_ad" target="uc_a2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ea3" style="endArrow=none;html=1;strokeColor=#DC2626;strokeWidth=1.5;" edge="1" parent="1" source="act_ad" target="uc_a3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ea4" style="endArrow=none;html=1;strokeColor=#DC2626;strokeWidth=1.5;" edge="1" parent="1" source="act_ad" target="uc_a4"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ea5" style="endArrow=none;html=1;strokeColor=#DC2626;strokeWidth=1.5;" edge="1" parent="1" source="act_ad" target="uc_a5"><mxGeometry relative="1" as="geometry" /></mxCell>
+    
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

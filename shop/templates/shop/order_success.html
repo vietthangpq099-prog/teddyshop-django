@@ -1,0 +1,61 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Đặt Hàng Thành Công{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-7 text-center">
+            <div class="bg-white rounded border p-5 shadow-sm" style="border-radius:24px !important;">
+                <div style="font-size:4rem;margin-bottom:10px;">🎉🧸</div>
+                <h2 style="font-weight:900;color:var(--jp-brown);">Đặt Hàng Thành Công!</h2>
+                <p class="text-muted">Cảm ơn bạn đã tin tưởng mua sắm tại <strong>TeddyShop</strong>. Chúng mình sẽ liên hệ xác nhận và đóng gói gửi tới bạn sớm nhất!</p>
+
+                <div class="alert alert-info py-3 my-4 text-start" style="background:#FFF9E6;border-color:#FFE082;color:var(--jp-brown);border-radius:14px;">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Mã đơn hàng:</span>
+                        <strong class="text-danger" style="font-size:16px;">{{ order.ordercode }}</strong>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Người nhận:</span>
+                        <strong>{{ order.customername }} ({{ order.phone }})</strong>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Địa chỉ giao:</span>
+                        <strong>{{ order.address }}</strong>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Phương thức:</span>
+                        <strong>{{ order.paymentmethod }}</strong>
+                    </div>
+                    <div class="d-flex justify-content-between border-top pt-2 mt-2">
+                        <span>Tổng thanh toán:</span>
+                        <strong style="color:#D81B60;font-size:18px;">{{ order.totalamount|floatformat:0 }}₫</strong>
+                    </div>
+                </div>
+
+                <div class="text-start mb-4">
+                    <h6 class="fw-bold" style="color:var(--jp-brown);">Chi tiết sản phẩm đã đặt:</h6>
+                    <ul class="list-group list-group-flush">
+                        {% for d in details %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <div>
+                                    <strong>{{ d.productname }}</strong>
+                                    <small class="text-muted d-block">Size: {{ d.selectedsize }} • Số lượng: {{ d.quantity }}</small>
+                                </div>
+                                <span class="fw-bold text-danger">{{ d.unitprice|floatformat:0 }}₫</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <a href="{% url 'home' %}" class="btn btn-danger px-4 py-2 fw-bold" 
+                   style="background:var(--jp-primary-pink);border:none;border-radius:25px;">
+                    <i class="fas fa-home me-1"></i>Trở Về Trang Chủ
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

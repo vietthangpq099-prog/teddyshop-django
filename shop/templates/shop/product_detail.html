@@ -1,0 +1,207 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}{{ product.productname }} - Chi Tiết Sản Phẩm{% endblock %}
+
+{% block content %}
+<div class="container mt-3">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-3" style="font-size:12px;font-weight:700;">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}" style="color:var(--jp-primary-pink);">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'product_list' %}?category={{ product.category.categoryid }}" style="color:var(--jp-primary-pink);">{{ product.category.categoryname }}</a></li>
+            <li class="breadcrumb-item active text-muted">{{ product.productname }}</li>
+        </ol>
+    </nav>
+
+    <!-- KHUNG CHI TIẾT SẢN PHẨM -->
+    <div class="jp-pdp-container">
+        <div class="row g-5">
+            <!-- Cột trái: Ảnh sản phẩm & cam kết -->
+            <div class="col-lg-5">
+                <div style="position:sticky;top:90px;">
+                    <div style="border:1px solid var(--jp-border);border-radius:10px;overflow:hidden;background:#FAF7F2;">
+                        <img src="{{ product.get_image_url }}" alt="{{ product.productname }}" class="w-100" style="object-fit:cover;max-height:450px;" />
+                    </div>
+
+                    <!-- Huy hiệu dịch vụ -->
+                    <div class="d-flex justify-content-between align-items-center mt-3 p-2 bg-light border rounded" style="font-size:11px;font-weight:700;">
+                        <span>🛡️ Kiểm định an toàn 100%</span>
+                        <span class="text-danger">🎀 Hộp quà & Thiệp tặng kèm miễn phí</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cột phải: Thông tin & Đặt mua -->
+            <div class="col-lg-7">
+                <div class="jp-pdp-code">Mã sản phẩm: TB-00{{ product.productid }} • Danh mục: {{ product.category.categoryname }}</div>
+                <h1 class="jp-pdp-title">{{ product.productname }}</h1>
+
+                <!-- Khung giá tiền -->
+                <div class="jp-pdp-price-box d-flex justify-content-between align-items-baseline">
+                    <div>
+                        <span style="font-size:12px;color:var(--jp-brown-sub);font-weight:800;">Giá bán:</span>
+                        <span id="price-display" class="jp-pdp-price ms-2">{{ product.baseprice|floatformat:0 }}₫</span>
+                        <span class="small text-muted fw-bold ms-1">(Đã bao gồm thuế VAT)</span>
+                    </div>
+                    <span class="badge bg-success" style="font-size:11px;"><i class="fas fa-check me-1"></i>Còn hàng trong kho</span>
+                </div>
+
+                <!-- Thước đo độ mềm Fuwafuwa -->
+                <div class="d-flex align-items-center gap-2 mb-3 p-2 rounded" style="background:#FFF9E6;border:1px solid #FFE082;font-size:12px;">
+                    <strong style="color:var(--jp-brown);">☁️ Thước đo độ êm mềm:</strong>
+                    <span class="text-warning">★★★★★</span>
+                    <span class="fw-bold">5/5 - Cực kỳ mềm mại, ôm ấm áp</span>
+                </div>
+
+                <!-- Mô tả -->
+                <p style="color:var(--jp-brown);font-size:13px;line-height:1.8;margin-bottom:18px;">
+                    {{ product.description|default:"Sản phẩm gấu bông cao cấp, êm ái và mềm mại." }}
+                </p>
+
+                <!-- Chất liệu -->
+                <div class="p-2 mb-4 bg-light rounded" style="font-size:12px;border-left:3px solid var(--jp-primary-pink);">
+                    <strong>Chất liệu sản phẩm:</strong> {{ product.material|default:"Vải nhung lông mịn màng, bông PP tinh khiết kháng khuẩn" }}
+                </div>
+
+                <form action="{% url 'cart_add' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_id" value="{{ product.productid }}" />
+
+                    <!-- Bảng kích thước & giá tương ứng -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" style="font-size:13px;">
+                            📏 Kích Thước Lựa Chọn:
+                        </label>
+                        <table class="jp-size-table">
+                            <thead>
+                                <tr>
+                                    <th>Kích thước</th>
+                                    <th>Lựa chọn</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for s in sizes %}
+                                    <tr>
+                                        <td><strong>{{ s }}</strong></td>
+                                        <td>
+                                            <input type="radio" name="size" value="{{ s }}"
+                                                   {% if forloop.first %}checked{% endif %}
+                                                   style="cursor:pointer;" />
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Số lượng -->
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <label class="form-label fw-bold mb-0" style="font-size:13px;">Số lượng đặt:</label>
+                        <div class="d-flex align-items-center">
+                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="changeQty(-1)" style="width:30px;height:30px;font-weight:900;">−</button>
+                            <input type="number" name="quantity" id="qtyInput" value="1" min="1" max="99"
+                                   style="width:50px;text-align:center;border:1px solid #ccc;height:30px;font-weight:800;margin:0 4px;" />
+                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="changeQty(1)" style="width:30px;height:30px;font-weight:900;">+</button>
+                        </div>
+                    </div>
+
+                    <!-- Tùy chọn quà tặng -->
+                    <div class="p-3 mb-4 rounded" style="background:#FFFBFD;border:1px dashed #FFCCD5;">
+                        <h6 class="fw-bold mb-2" style="font-size:12px;color:var(--jp-primary-pink);">
+                            <i class="fas fa-gift me-1"></i> Dịch Vụ Quà Tặng Miễn Phí
+                        </h6>
+                        <div class="form-check mb-2" style="font-size:12px;">
+                            <input class="form-check-input" type="checkbox" name="gift_wrapped" id="vacuumCheck" checked />
+                            <label class="form-check-label fw-bold" for="vacuumCheck">
+                                Hút chân không, bọc ruy băng nơ lụa & Đóng hộp quà sang trọng
+                            </label>
+                        </div>
+                        <div class="mt-2">
+                            <label class="form-label fw-bold" style="font-size:11px;">
+                                💌 Lời chúc viết tay trên thiệp chúc mừng:
+                            </label>
+                            <input type="text" name="gift_message" class="form-control form-control-sm"
+                                   placeholder="VD: Chúc bạn sinh nhật vui vẻ, luôn ấm áp nhé! 🌸"
+                                   style="border-radius:4px;border:1px solid #FFD1DA;" />
+                        </div>
+                    </div>
+
+                    <!-- Nút Thêm vào giỏ hàng -->
+                    <button type="submit" class="btn-jp-buy mb-3 w-100" style="cursor:pointer;">
+                        <i class="fas fa-shopping-bag"></i> Thêm Vào Giỏ Hàng
+                    </button>
+                </form>
+
+                <!-- Gợi ý từ nhân viên -->
+                <div class="jp-staff-voice">
+                    <div class="jp-staff-voice-title">
+                        <i class="fas fa-comment-dots text-warning"></i> Gợi ý từ nhân viên cửa hàng:
+                    </div>
+                    <em>"Bé gấu này sờ chất lông cực kỳ mướt tay, đường may chắc chắn. Size lớn ôm ngủ rất thích hợp cho những ngày mưa hoặc làm món quà sinh nhật bất ngờ."</em>
+                </div>
+
+                <!-- Hướng dẫn giặt & bảo quản -->
+                <div class="accordion mt-3" id="careAccordion">
+                    <div class="accordion-item" style="border:1px solid var(--jp-border);">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCare" style="font-size:12px;">
+                                🧸 Hướng dẫn giặt & vệ sinh gấu bông
+                            </button>
+                        </h2>
+                        <div id="collapseCare" class="accordion-collapse collapse" data-bs-parent="#careAccordion">
+                            <div class="accordion-body small" style="color:var(--jp-brown-sub);font-size:12px;line-height:1.7;">
+                                • Có thể giặt tay bằng sữa tắm dịu nhẹ hoặc giặt máy ở chế độ nhẹ (cho vào túi giặt).<br />
+                                • Phơi ở nơi thoáng gió, tránh ánh nắng trực tiếp gay gắt để lông giữ nguyên độ mềm mượt.<br />
+                                • Dùng lược chải nhẹ sau khi khô để lớp lông bông xù tự nhiên như mới.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Sản phẩm cùng bộ sưu tập -->
+    {% if related %}
+        <div class="jp-title-bar mt-5">
+            <div class="jp-title-left">
+                <h3 class="jp-title-main">
+                    <i class="fas fa-heart text-danger"></i> Sản Phẩm Cùng Danh Mục
+                </h3>
+                <span class="jp-title-sub">BẠN CŨNG CÓ THỂ THÍCH</span>
+            </div>
+        </div>
+        <div class="jp-grid-4">
+            {% for p in related %}
+                <a href="{% url 'product_detail' pk=p.productid %}" class="jp-card">
+                    <div class="jp-card-thumb">
+                        <img src="{{ p.get_image_url }}" alt="{{ p.productname }}" />
+                    </div>
+                    <div class="jp-card-info">
+                        <span class="jp-card-cat">{{ p.category.categoryname }}</span>
+                        <div class="jp-card-title">{{ p.productname }}</div>
+                        <div class="jp-card-price-area">
+                            <span class="jp-card-price">{{ p.baseprice|floatformat:0 }}₫</span>
+                            <span class="jp-card-tax">(Đã gồm VAT)</span>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function changeQty(delta) {
+        var input = document.getElementById('qtyInput');
+        var val = parseInt(input.value) + delta;
+        if (val < 1) val = 1;
+        if (val > 99) val = 99;
+        input.value = val;
+    }
+</script>
+{% endblock %}

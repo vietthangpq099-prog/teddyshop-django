@@ -1,0 +1,113 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Admin Dashboard - Quản Trị Hệ Thống{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 style="font-weight:900;color:var(--jp-brown);margin:0;">
+                <i class="fas fa-tachometer-alt me-2 text-danger"></i>Dashboard Quản Trị (Django)
+            </h2>
+            <p class="text-muted small mb-0">Thống kê nhanh tình hình kinh doanh tiệm gấu bông</p>
+        </div>
+        <div class="d-flex gap-2">
+            <a href="{% url 'admin_products' %}" class="btn btn-outline-secondary btn-sm fw-bold px-3" style="border-radius:20px;">
+                <i class="fas fa-boxes me-1"></i>Kho Sản Phẩm
+            </a>
+            <a href="{% url 'admin_orders' %}" class="btn btn-outline-secondary btn-sm fw-bold px-3" style="border-radius:20px;">
+                <i class="fas fa-clipboard-list me-1"></i>Đơn Hàng
+            </a>
+            <a href="{% url 'admin_product_add' %}" class="btn btn-danger btn-sm fw-bold px-3" 
+               style="background:var(--jp-primary-pink);border:none;border-radius:20px;">
+                <i class="fas fa-plus me-1"></i>Thêm Gấu Bông Mới
+            </a>
+        </div>
+    </div>
+
+    <!-- STATS 4 CARD -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <div class="p-3 bg-white rounded border shadow-sm" style="border-left:5px solid #E85A71 !important;">
+                <div style="font-size:2rem;font-weight:900;color:#E85A71;">{{ total_products }}</div>
+                <div class="text-muted small fw-bold">🧸 Tổng Sản Phẩm</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="p-3 bg-white rounded border shadow-sm" style="border-left:5px solid #4A3525 !important;">
+                <div style="font-size:2rem;font-weight:900;color:#4A3525;">{{ total_orders }}</div>
+                <div class="text-muted small fw-bold">📦 Tổng Đơn Hàng</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="p-3 bg-white rounded border shadow-sm" style="border-left:5px solid #28a745 !important;">
+                <div style="font-size:1.6rem;font-weight:900;color:#28a745;">{{ total_revenue|floatformat:0 }}₫</div>
+                <div class="text-muted small fw-bold">💰 Doanh Thu (Hoàn thành)</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="p-3 bg-white rounded border shadow-sm" style="border-left:5px solid #ffc107 !important;">
+                <div style="font-size:2rem;font-weight:900;color:#ffc107;">{{ pending_orders }}</div>
+                <div class="text-muted small fw-bold">⏳ Đơn Chờ Xác Nhận</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RECENT ORDERS -->
+    <div class="bg-white rounded border shadow-sm p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+            <h5 style="font-weight:900;color:var(--jp-brown);margin:0;">
+                <i class="fas fa-list-alt me-2 text-danger"></i>Đơn Hàng Gần Đây
+            </h5>
+            <a href="{% url 'admin_orders' %}" class="btn btn-sm btn-link text-decoration-none fw-bold" style="color:var(--jp-primary-pink);">
+                Xem tất cả đơn hàng ➔
+            </a>
+        </div>
+
+        {% if recent_orders %}
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead>
+                        <tr class="small text-muted">
+                            <th>Mã Đơn</th>
+                            <th>Khách Hàng</th>
+                            <th>Ngày Đặt</th>
+                            <th>Tổng Tiền</th>
+                            <th>Phương Thức</th>
+                            <th>Trạng Thái</th>
+                            <th>Hành Động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for o in recent_orders %}
+                            <tr>
+                                <td><strong class="text-danger">{{ o.ordercode }}</strong></td>
+                                <td>
+                                    <strong>{{ o.customername }}</strong>
+                                    <small class="text-muted d-block">{{ o.phone }}</small>
+                                </td>
+                                <td class="small">{{ o.orderdate|date:"d/m/Y H:i" }}</td>
+                                <td style="font-weight:800;color:#D81B60;">{{ o.totalamount|floatformat:0 }}₫</td>
+                                <td class="small">{{ o.paymentmethod }}</td>
+                                <td>
+                                    <span class="badge {% if o.status == 'Chờ xác nhận' %}bg-warning text-dark{% elif o.status == 'Đang giao' %}bg-info text-white{% elif o.status == 'Hoàn thành' %}bg-success{% else %}bg-secondary{% endif %}">
+                                        {{ o.status }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="{% url 'admin_order_detail' pk=o.orderid %}" class="btn btn-sm btn-outline-danger" style="border-radius:12px;font-size:11px;font-weight:700;">
+                                        Chi tiết
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="text-muted text-center py-4">Chưa có đơn hàng nào.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

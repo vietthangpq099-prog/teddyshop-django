@@ -1,0 +1,81 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Đăng Ký Tài Khoản Mới{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-11">
+
+            <div class="card border-0 shadow-sm" style="border-radius: 28px; background: #FFFFFF; overflow: hidden; border: 2px solid #FFF0F5;">
+                <div class="text-center pt-5 pb-3 px-4" style="background: linear-gradient(180deg, #FFF5F7 0%, #FFFFFF 100%);">
+                    <div style="font-size: 3rem; margin-bottom: 8px;">🎀</div>
+                    <span class="badge px-3 py-2" style="background: #FFE4EC; color: #D8436B; font-weight: 800; border-radius: 20px; font-size: 0.8rem;">
+                        🌸 TẠO TÀI KHOẢN MỚI
+                    </span>
+                    <h2 class="mt-2 mb-1" style="font-weight: 900; color: #4A3525; font-size: 1.7rem;">Gia Nhập TeddyShop</h2>
+                    <p class="text-muted small mb-0">Đăng ký thành viên để lưu thông tin giao hàng và nhận mã giảm giá</p>
+                </div>
+
+                <!-- TAB CHUYỂN ĐỔI -->
+                <div class="d-flex mx-4 mb-4 p-1" style="background: #FFF0F4; border-radius: 50px;">
+                    <a href="{% url 'login' %}" class="w-50 text-center py-2 text-decoration-none fw-bold text-muted">
+                        <i class="fas fa-sign-in-alt me-1"></i>Đăng Nhập
+                    </a>
+                    <a href="{% url 'register' %}" class="w-50 text-center py-2 text-decoration-none fw-bold" style="background: #FFFFFF; color: #D8436B; border-radius: 50px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                        <i class="fas fa-user-plus me-1"></i>Đăng Ký
+                    </a>
+                </div>
+
+                <div class="card-body px-4 px-md-5 pt-0 pb-4">
+                    <form method="post" action="{% url 'register' %}">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold small text-muted mb-1">
+                                <i class="fas fa-user me-1 text-danger"></i>Tên đăng nhập *
+                            </label>
+                            <input type="text" name="username" class="form-control py-2" placeholder="VD: thawngs2026" required style="border-radius:12px;" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold small text-muted mb-1">
+                                <i class="fas fa-id-card me-1 text-danger"></i>Họ và tên *
+                            </label>
+                            <input type="text" name="fullname" class="form-control py-2" placeholder="VD: Nguyễn Văn Thắng" required style="border-radius:12px;" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold small text-muted mb-1">
+                                <i class="fas fa-lock me-1 text-danger"></i>Mật khẩu *
+                            </label>
+                            <input type="password" name="password" class="form-control py-2" placeholder="Tối thiểu 6 ký tự..." required style="border-radius:12px;" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold small text-muted mb-1">
+                                <i class="fas fa-envelope me-1 text-danger"></i>Email
+                            </label>
+                            <input type="email" name="email" class="form-control py-2" placeholder="thawngs@example.com" style="border-radius:12px;" />
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold small text-muted mb-1">
+                                <i class="fas fa-phone me-1 text-danger"></i>Số điện thoại
+                            </label>
+                            <input type="tel" name="phone" class="form-control py-2" placeholder="0909 888 999" style="border-radius:12px;" />
+                        </div>
+
+                        <button type="submit" class="btn w-100 py-3 text-white fw-bold mb-3 shadow-sm" 
+                                style="background: linear-gradient(135deg, #E85A71 0%, #D8436B 100%); border-radius: 20px; font-size: 1rem; border: none;">
+                            <i class="fas fa-check-circle me-2"></i>Hoàn Tất Đăng Ký
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

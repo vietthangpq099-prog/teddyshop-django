@@ -1,0 +1,705 @@
+/* ============================================================
+   🇯🇵 JAPANESE CHARACTER & PLUSHIE E-COMMERCE THEME
+   Directly modeled after Sanrio Online Shop (shop.sanrio.co.jp) 
+   and San-X Net Shop (shop.san-x.co.jp - Rilakkuma & Sumikko)
+   ============================================================ */
+
+:root {
+    --jp-bg: #FDFBF7;              /* Nền kem ấm đặc trưng Zakka Nhật */
+    --jp-card-bg: #FFFFFF;
+    --jp-primary-pink: #E85A71;     /* Màu hồng dâu chuẩn Sanrio */
+    --jp-secondary-pink: #FFF0F2;   /* Hồng phấn nhạt làm nền */
+    --jp-accent-red: #D32F2F;       /* Đỏ giá tiền chuẩn EC Nhật */
+    --jp-brown: #4A3525;            /* Nâu gấu Teddy / Choco */
+    --jp-brown-sub: #7D6B5D;        /* Chữ phụ, ghi chú */
+    --jp-yellow: #FFF9E6;           /* Vàng kem Rilakkuma */
+    --jp-yellow-border: #FFE082;
+    --jp-border: #EFE6DC;           /* Viền kẻ mảnh nhã nhặn */
+    --jp-border-dark: #D8C7B8;
+    --jp-mint: #E8F5E9;
+    --jp-font-main: 'Zen Maru Gothic', 'Nunito', "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: var(--jp-font-main);
+    background-color: var(--jp-bg);
+    color: var(--jp-brown);
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* ============================================================
+   1. HEADER (ヘッダー) - Chuẩn cấu trúc Sanrio & San-X
+   ============================================================ */
+
+/* Top Utility Bar */
+.jp-header-top {
+    background: #FAF6F0;
+    border-bottom: 1px solid var(--jp-border);
+    padding: 6px 0;
+    font-size: 12px;
+    color: var(--jp-brown-sub);
+}
+.jp-header-top a {
+    color: var(--jp-brown-sub);
+    text-decoration: none;
+    margin-left: 14px;
+    transition: color 0.2s;
+}
+.jp-header-top a:hover { color: var(--jp-primary-pink); }
+
+/* Main Brand Header */
+.jp-main-header {
+    background: #FFFFFF;
+    border-bottom: 2px solid var(--jp-border);
+    padding: 16px 0 12px;
+}
+.jp-logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+.jp-logo-mark {
+    width: 52px;
+    height: 52px;
+    background: var(--jp-secondary-pink);
+    border: 2px solid var(--jp-primary-pink);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 2px 8px rgba(232, 90, 113, 0.15);
+}
+.jp-logo-text { line-height: 1.15; }
+.jp-logo-sub {
+    font-size: 11px;
+    color: var(--jp-primary-pink);
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    display: block;
+}
+.jp-logo-title {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--jp-brown);
+    letter-spacing: -0.5px;
+}
+.jp-logo-title span { color: var(--jp-primary-pink); }
+
+/* Japanese Search & Keywords Box */
+.jp-search-container { max-width: 480px; width: 100%; margin: 0 auto; }
+.jp-search-bar {
+    display: flex;
+    border: 2px solid var(--jp-primary-pink);
+    border-radius: 25px;
+    overflow: hidden;
+    background: #FFFFFF;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+.jp-search-bar input {
+    border: none;
+    outline: none;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-family: inherit;
+    flex: 1;
+    color: var(--jp-brown);
+}
+.jp-search-bar button {
+    background: var(--jp-primary-pink);
+    color: #FFFFFF;
+    border: none;
+    padding: 0 20px;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s;
+}
+.jp-search-bar button:hover { background: #d0455c; }
+
+/* Popular Keywords row (注目キーワード - Rất đặc trưng web Nhật) */
+.jp-keywords-row {
+    font-size: 11px;
+    margin-top: 5px;
+    color: var(--jp-brown-sub);
+}
+.jp-keywords-row a {
+    color: #6C5B4E;
+    text-decoration: none;
+    margin-right: 8px;
+    background: #F5EFE8;
+    padding: 1px 7px;
+    border-radius: 10px;
+    display: inline-block;
+    transition: all 0.15s;
+}
+.jp-keywords-row a:hover {
+    background: var(--jp-primary-pink);
+    color: #FFFFFF;
+}
+
+/* Header Cart & Admin buttons */
+.jp-header-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+}
+.jp-cart-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--jp-secondary-pink);
+    border: 1px solid #FFCCD4;
+    padding: 7px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: var(--jp-brown);
+    font-weight: 800;
+    transition: all 0.2s;
+}
+.jp-cart-btn:hover {
+    background: #FFE0E6;
+    color: var(--jp-primary-pink);
+    border-color: var(--jp-primary-pink);
+}
+.jp-cart-icon-wrap { position: relative; font-size: 18px; color: var(--jp-primary-pink); }
+.jp-cart-badge {
+    position: absolute;
+    top: -6px; right: -8px;
+    background: var(--jp-primary-pink);
+    color: white;
+    font-size: 10px;
+    font-weight: 900;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid white;
+}
+.jp-cart-text { font-size: 12px; line-height: 1.2; text-align: left; }
+.jp-cart-price { color: var(--jp-accent-red); font-weight: 900; font-size: 13px; }
+
+/* Global Navigation Tabs (グローバルナビゲーション) */
+.jp-nav-bar {
+    background: #FFFFFF;
+    border-bottom: 3px solid var(--jp-primary-pink);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.03);
+}
+.jp-nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.jp-nav-item { flex: 1; text-align: center; }
+.jp-nav-link {
+    display: block;
+    padding: 11px 8px;
+    color: var(--jp-brown);
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 13px;
+    border-right: 1px solid #F5EBE1;
+    transition: all 0.2s;
+    line-height: 1.2;
+}
+.jp-nav-link span {
+    display: block;
+    font-size: 9px;
+    color: var(--jp-brown-sub);
+    font-weight: 700;
+    margin-top: 2px;
+}
+.jp-nav-link:hover, .jp-nav-link.active {
+    background: var(--jp-secondary-pink);
+    color: var(--jp-primary-pink);
+}
+.jp-nav-link:hover span { color: var(--jp-primary-pink); }
+
+/* ============================================================
+   2. TWO-COLUMN LAYOUT (2カラムレイアウト - Sanrio & San-X standard)
+   ============================================================ */
+.jp-layout {
+    display: flex;
+    gap: 25px;
+    margin-top: 25px;
+}
+.jp-sidebar {
+    width: 240px;
+    flex-shrink: 0;
+}
+.jp-main-content {
+    flex: 1;
+    min-width: 0; /* Cho responsive */
+}
+
+/* Sidebar Box (サイドバーブロック) */
+.jp-side-box {
+    background: #FFFFFF;
+    border: 1px solid var(--jp-border);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+}
+.jp-side-head {
+    background: #FAF4EE;
+    border-bottom: 1px solid var(--jp-border);
+    padding: 10px 14px;
+    font-size: 13px;
+    font-weight: 900;
+    color: var(--jp-brown);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.jp-side-head i { color: var(--jp-primary-pink); }
+.jp-side-body { padding: 8px 0; }
+
+/* Sidebar Character List (キャラクターから探す) */
+.jp-char-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    text-decoration: none;
+    color: var(--jp-brown);
+    font-size: 13px;
+    font-weight: 700;
+    transition: all 0.15s;
+    border-bottom: 1px dashed #F5EFE8;
+}
+.jp-char-item:last-child { border-bottom: none; }
+.jp-char-item:hover {
+    background: var(--jp-secondary-pink);
+    color: var(--jp-primary-pink);
+    padding-left: 18px;
+}
+.jp-char-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #FCECEF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    border: 1px solid #FFD1DA;
+}
+
+/* Sidebar Category Tree */
+.jp-cat-list { list-style: none; margin: 0; padding: 0; }
+.jp-cat-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 16px;
+    color: var(--jp-brown);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 13px;
+    border-bottom: 1px solid #FAF4EE;
+    transition: all 0.15s;
+}
+.jp-cat-link:hover {
+    background: var(--jp-secondary-pink);
+    color: var(--jp-primary-pink);
+}
+.jp-cat-count {
+    background: #F0E6DC;
+    color: var(--jp-brown);
+    font-size: 10px;
+    font-weight: 800;
+    padding: 1px 7px;
+    border-radius: 10px;
+}
+
+/* Sidebar Service Banner */
+.jp-side-banner {
+    background: linear-gradient(135deg, #FFF9E6 0%, #FFF0F2 100%);
+    border: 1px dashed #FFD1DA;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+    margin: 10px 14px 14px;
+}
+.jp-side-banner h6 { font-size: 12px; font-weight: 900; color: var(--jp-brown); margin: 0 0 4px; }
+.jp-side-banner p { font-size: 11px; color: var(--jp-brown-sub); margin: 0; }
+
+/* ============================================================
+   3. MAIN AREA ELEMENTS (メインエリア要素)
+   ============================================================ */
+
+/* News / Notice Ticker (お知らせ - San-X style) */
+.jp-news-box {
+    background: #FFFFFF;
+    border: 1px solid var(--jp-border);
+    border-radius: 8px;
+    padding: 12px 18px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 12px;
+}
+.jp-news-label {
+    background: var(--jp-primary-pink);
+    color: white;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+.jp-news-content { flex: 1; color: var(--jp-brown); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.jp-news-date { font-weight: 700; color: var(--jp-brown-sub); margin-right: 8px; }
+
+/* Large Feature Banner Carousel (特集バナー) */
+.jp-hero-campaign {
+    background: linear-gradient(135deg, #FFF1F3 0%, #FFF8EA 60%, #F0F8EC 100%);
+    border: 2px solid #F5D3C4;
+    border-radius: 16px;
+    padding: 35px 30px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+.jp-campaign-badge {
+    display: inline-block;
+    background: var(--jp-primary-pink);
+    color: white;
+    font-size: 11px;
+    font-weight: 900;
+    padding: 3px 12px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+.jp-campaign-title {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--jp-brown);
+    line-height: 1.3;
+    margin-bottom: 10px;
+}
+.jp-campaign-title span { color: var(--jp-primary-pink); }
+.jp-campaign-desc { font-size: 13px; color: var(--jp-brown-sub); margin-bottom: 20px; }
+
+/* Section Title Ribbon (見出しリボン - Sanrio & San-X) */
+.jp-title-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--jp-primary-pink);
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+}
+.jp-title-left {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+.jp-title-main {
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--jp-brown);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.jp-title-sub {
+    font-size: 11px;
+    color: var(--jp-primary-pink);
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+.jp-title-link {
+    font-size: 12px;
+    color: var(--jp-primary-pink);
+    text-decoration: none;
+    font-weight: 800;
+}
+.jp-title-link:hover { text-decoration: underline; }
+
+/* ============================================================
+   4. JAPANESE PRODUCT CARD (商品カード - Sanrio grid)
+   ============================================================ */
+.jp-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 35px;
+}
+.jp-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.jp-card {
+    background: #FFFFFF;
+    border: 1px solid var(--jp-border);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--jp-brown);
+    transition: all 0.2s ease;
+    position: relative;
+}
+.jp-card:hover {
+    border-color: var(--jp-primary-pink);
+    box-shadow: 0 4px 16px rgba(232, 90, 113, 0.15);
+    transform: translateY(-3px);
+    color: var(--jp-brown);
+}
+.jp-card-thumb {
+    position: relative;
+    width: 100%;
+    padding-top: 100%; /* Vuông 1:1 chuẩn Sanrio */
+    background: #FAF7F2;
+    overflow: hidden;
+}
+.jp-card-thumb img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+.jp-card:hover .jp-card-thumb img { transform: scale(1.05); }
+
+/* Badges (NEW, 限定, おすすめ) */
+.jp-tag-stack {
+    position: absolute;
+    top: 8px; left: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 2;
+}
+.jp-tag {
+    font-size: 10px;
+    font-weight: 900;
+    padding: 2px 6px;
+    border-radius: 3px;
+    line-height: 1.2;
+    color: #FFFFFF;
+}
+.jp-tag-new { background: #E85A71; }
+.jp-tag-limited { background: #8E24AA; }
+.jp-tag-rank {
+    position: absolute;
+    top: 0; left: 0;
+    width: 32px; height: 32px;
+    background: #FF9800;
+    color: white;
+    font-weight: 900;
+    font-size: 13px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 0 0 10px 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+.rank-gold { background: linear-gradient(135deg, #FFB300, #F57C00); }
+.rank-silver { background: linear-gradient(135deg, #B0BEC5, #78909C); }
+.rank-bronze { background: linear-gradient(135deg, #D7CCC8, #8D6E63); }
+
+.jp-card-info {
+    padding: 12px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.jp-card-cat {
+    font-size: 11px;
+    color: var(--jp-brown-sub);
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+.jp-card-title {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--jp-brown);
+    margin-bottom: 8px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 36px;
+}
+.jp-card-price-area {
+    margin-top: auto;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+.jp-card-price {
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--jp-accent-red);
+}
+.jp-card-tax {
+    font-size: 10px;
+    color: var(--jp-brown-sub);
+    font-weight: 700;
+}
+.jp-card-stock {
+    font-size: 11px;
+    color: #2E7D32;
+    font-weight: 700;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* ============================================================
+   5. JAPANESE PDP (Product Detail Page - 商品詳細)
+   ============================================================ */
+.jp-pdp-container {
+    background: #FFFFFF;
+    border: 1px solid var(--jp-border);
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 40px;
+}
+.jp-pdp-code {
+    font-size: 11px;
+    color: var(--jp-brown-sub);
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+.jp-pdp-title {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--jp-brown);
+    margin-bottom: 12px;
+    line-height: 1.35;
+}
+.jp-pdp-price-box {
+    background: #FFF5F7;
+    border-top: 1px solid #FFD1DA;
+    border-bottom: 1px solid #FFD1DA;
+    padding: 14px 18px;
+    margin: 16px 0 20px;
+}
+.jp-pdp-price {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--jp-accent-red);
+}
+
+/* Size Table (サイズ展開) */
+.jp-size-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 20px;
+    font-size: 13px;
+}
+.jp-size-table th, .jp-size-table td {
+    border: 1px solid var(--jp-border);
+    padding: 10px 14px;
+    text-align: center;
+}
+.jp-size-table th { background: #FAF5F0; font-weight: 800; }
+.jp-size-btn-label {
+    display: block;
+    cursor: pointer;
+    margin: 0;
+    font-weight: 800;
+}
+
+/* Staff Voice / Recommendation (スタッフのおすすめポイント) */
+.jp-staff-voice {
+    background: #FFF9E6;
+    border: 2px dashed #FFE082;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 18px 0;
+    font-size: 12px;
+    position: relative;
+}
+.jp-staff-voice-title {
+    font-weight: 900;
+    color: var(--jp-brown);
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Big Japanese Cart Button */
+.btn-jp-buy {
+    background: var(--jp-primary-pink);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 900;
+    width: 100%;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(232, 90, 113, 0.3);
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.btn-jp-buy:hover {
+    background: #d0455c;
+    color: #FFFFFF;
+    transform: translateY(-2px);
+}
+
+/* ============================================================
+   6. JAPANESE FOOTER (フッター・ご利用案内)
+   ============================================================ */
+.jp-footer {
+    background: #F8F3ED;
+    border-top: 3px solid var(--jp-primary-pink);
+    padding: 40px 0 20px;
+    margin-top: 50px;
+    font-size: 12px;
+    color: var(--jp-brown);
+}
+.jp-footer-guide {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #E6D8CC;
+    margin-bottom: 25px;
+}
+.jp-guide-box h6 {
+    font-size: 13px;
+    font-weight: 900;
+    color: var(--jp-brown);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid #E6D8CC;
+    padding-bottom: 6px;
+}
+.jp-guide-box p, .jp-guide-box li { color: var(--jp-brown-sub); font-size: 11px; line-height: 1.7; margin: 0; }
+.jp-footer-copy { text-align: center; color: #A69688; font-size: 11px; margin-top: 15px; }
+
+/* Responsive */
+@media (max-width: 992px) {
+    .jp-layout { flex-direction: column; }
+    .jp-sidebar { width: 100%; }
+    .jp-grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .jp-footer-guide { grid-template-columns: repeat(2, 1fr); }
+}

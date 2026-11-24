@@ -1,0 +1,107 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Đăng Nhập Thành Viên{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-11">
+
+            <!-- THẺ ĐĂNG NHẬP PHONG CÁCH NHẬT BẢN ZAKKA -->
+            <div class="card border-0 shadow-sm" style="border-radius: 28px; background: #FFFFFF; overflow: hidden; box-shadow: 0 15px 40px rgba(216, 67, 107, 0.08) !important; border: 2px solid #FFF0F5;">
+                
+                <!-- HEADER DỄ THƯƠNG -->
+                <div class="text-center pt-5 pb-3 px-4" style="background: linear-gradient(180deg, #FFF5F7 0%, #FFFFFF 100%);">
+                    <div style="font-size: 3rem; margin-bottom: 8px;">🧸</div>
+                    <span class="badge px-3 py-2" style="background: #FFE4EC; color: #D8436B; font-weight: 800; border-radius: 20px; font-size: 0.8rem; letter-spacing: 0.5px;">
+                        🌸 THÀNH VIÊN TEDDYSHOP (DJANGO)
+                    </span>
+                    <h2 class="mt-2 mb-1" style="font-weight: 900; color: #4A3525; font-size: 1.7rem;">Mừng Bạn Trở Lại!</h2>
+                    <p class="text-muted small mb-0">Đăng nhập để theo dõi đơn hàng và quản lý cửa hàng</p>
+                </div>
+
+                <!-- TAB CHUYỂN ĐỔI ĐĂNG NHẬP / ĐĂNG KÝ -->
+                <div class="d-flex mx-4 mb-4 p-1" style="background: #FFF0F4; border-radius: 50px;">
+                    <a href="{% url 'login' %}" class="w-50 text-center py-2 text-decoration-none fw-bold" style="background: #FFFFFF; color: #D8436B; border-radius: 50px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                        <i class="fas fa-sign-in-alt me-1"></i>Đăng Nhập
+                    </a>
+                    <a href="{% url 'register' %}" class="w-50 text-center py-2 text-decoration-none fw-bold text-muted">
+                        <i class="fas fa-user-plus me-1"></i>Đăng Ký
+                    </a>
+                </div>
+
+                <div class="card-body px-4 px-md-5 pt-0 pb-4">
+
+                    <!-- FORM ĐĂNG NHẬP -->
+                    <form method="post" action="{% url 'login' %}?next={{ request.GET.next|default:'/' }}">
+                        {% csrf_token %}
+
+                        <!-- TÊN ĐĂNG NHẬP -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold small text-muted mb-1">
+                                <i class="fas fa-user me-1 text-danger"></i>Tên đăng nhập
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text border-end-0" style="background: #FFFDF9; border-color: #F0E2DB; border-radius: 16px 0 0 16px;">
+                                    <i class="fas fa-user text-muted"></i>
+                                </span>
+                                <input type="text" id="userInput" name="username" class="form-control border-start-0 py-2" 
+                                       placeholder="Nhập tên đăng nhập..." required
+                                       style="border-color: #F0E2DB; border-radius: 0 16px 16px 0; background: #FFFDF9;" />
+                            </div>
+                        </div>
+
+                        <!-- MẬT KHẨU -->
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between">
+                                <label class="form-label fw-bold small text-muted mb-1">
+                                    <i class="fas fa-lock me-1 text-danger"></i>Mật khẩu
+                                </label>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-text border-end-0" style="background: #FFFDF9; border-color: #F0E2DB; border-radius: 16px 0 0 16px;">
+                                    <i class="fas fa-key text-muted"></i>
+                                </span>
+                                <input type="password" id="passInput" name="password" class="form-control border-start-0 border-end-0 py-2" 
+                                       placeholder="Nhập mật khẩu..." required
+                                       style="border-color: #F0E2DB; background: #FFFDF9;" />
+                                <button type="button" class="input-group-text border-start-0" onclick="togglePass()" 
+                                        style="background: #FFFDF9; border-color: #F0E2DB; border-radius: 0 16px 16px 0; cursor: pointer;">
+                                    <i id="eyeIcon" class="fas fa-eye text-muted"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- NÚT BẤM ĐĂNG NHẬP -->
+                        <button type="submit" class="btn w-100 py-3 text-white fw-bold mb-3 shadow-sm" 
+                                style="background: linear-gradient(135deg, #E85A71 0%, #D8436B 100%); border-radius: 20px; font-size: 1rem; border: none; letter-spacing: 0.5px;">
+                            <i class="fas fa-heart me-2"></i>Đăng Nhập Ngay
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function togglePass() {
+        var input = document.getElementById('passInput');
+        var icon = document.getElementById('eyeIcon');
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            input.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    }
+</script>
+{% endblock %}
